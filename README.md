@@ -1,2 +1,2 @@
-# .github.io
+# bored
 CSIS 304 Final Project
