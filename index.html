@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset=utf-8>
+        <meta name=viewport content="width=device-width,initial-scale=1, shrink-to-fit=no">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src=https://code.jquery.com/ui/1.12.1/jquery-ui.js></script>
+
+        <title>I AM BORED</title>
+
+        <style>
+            body {
+                background-color: #0b013b;
+                overflow: hidden;
+            }
+            .container-fluid {
+                padding-top: 70px;
+                padding-bottom: 70px;
+            }
+            .page-header {
+                padding-top:  10px;
+            }
+            .jumbotron {
+                padding-top: 85px;
+                padding-bottom: 115px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="p-3 mb-2 bg-dark text-white">
+            <div class="page-header">
+                <h1 style="text-align:center;">Are you BORED?</h1>
+                <p style="text-align:center;">I know I am...</p>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="jumbotron text-center">
+                <h5>Keep clicking the button until you find something you might like to do</h5>
+                <div class="content">
+                    
+                </div>
+                <button type="button" class="btn btn-danger" onclick="loadBored();">YES I am very bored</button>
+                <button typw="button" class="btn btn-danger" onclick="notBored();">Not that bored</button>
+            </div>
+
+        </div>
+
+        <!-- Javascript HERE! -->
+        <script>
+            function notBored() {
+                console.log("notBored() called");
+                const myContent = document.querySelector('.content');
+                const mkPara = document.createElement('p');
+                mkPara.innerHTML = "Oh please, you definitely bored don't even @ me";
+                myContent.innerHTML = '';
+                myContent.append(mkPara);
+            }
+
+            function newContent(activity) {
+                console.log("Whoa newContent() got called");
+                // find the content class
+                const myContent = document.querySelector('.content');
+                // create new content 'p' in this case
+                const mkPara = document.createElement('p');
+                mkPara.innerHTML = activity;
+                myContent.innerHTML = '';
+                myContent.append(mkPara);
+            };
+
+            function showError() {
+                console.log("There was an error.. somewhere (in ajax request)");
+            };
+
+            function onSuccess(actives) {
+                console.log("Yay a success youre not a complete failure " + actives);
+                newContent(actives["activity"]);
+            };
+
+            function loadBored() {
+                $.ajax({
+                    url: "https://www.boredapi.com/api/activity/",
+                    type: "GET",
+                    dataType: "json",
+                    error: showError,
+                    success: onSuccess
+                });
+            };
+
+            //$(document).ready(loadBored);
+
+        </script>
+    </body>
+</html>
