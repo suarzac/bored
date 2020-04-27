@@ -39,61 +39,40 @@
             </div>
         </div>
 
-        <div class="container-fluid">
-            <div class="jumbotron text-center">
-                <h5>Keep clicking the button until you find something you might like to do</h5>
-                <div class="content">
-                    
-                </div>
-                <button type="button" class="btn btn-danger" onclick="loadBored();">YES I am very bored</button>
-                <button typw="button" class="btn btn-danger" onclick="notBored();">Not that bored</button>
-            </div>
+        <div class="container">
+            <div class="jumbotron text-center container">
+                <div class="row">
+                    <div class="col-8">
+                        <h5>Press the button for a fresh idea</h5>  
+                        <div class="" id="content">
 
+                        </div>
+                    </div>
+                
+                
+                    <div class="col">
+                        <div class="form-group">
+                            <button type="button" class="btn btn-danger" id="boredBtn" onclick="loadRandom();">YES I am very bored</button>
+                            <button type="button" class="btn btn-danger" id="remo" onclick="notBored();">Not that bored</button>
+                            <div class="participantSelect">
+                                <label for="selectParticipants">Participants</label>
+                                <select class="form-control-md" id="selectParticipants">
+                                    <option value ="1">1</option>
+                                    <option value ="2">2</option>
+                                    <option value ="3">3</option>
+                                    <option value ="4">4</option>
+                                    <option value ="5">5</option>
+                                </select>
+                            </div>
+                            <button type="button" class="btn btn-danger" id="submitBtn" onclick="loadParticipant();">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>  
         </div>
 
-        <!-- Javascript HERE! -->
-        <script>
-            function notBored() {
-                console.log("notBored() called");
-                const myContent = document.querySelector('.content');
-                const mkPara = document.createElement('p');
-                mkPara.innerHTML = "Oh please, you definitely bored don't even @ me";
-                myContent.innerHTML = '';
-                myContent.append(mkPara);
-            }
-
-            function newContent(activity) {
-                console.log("Whoa newContent() got called");
-                // find the content class
-                const myContent = document.querySelector('.content');
-                // create new content 'p' in this case
-                const mkPara = document.createElement('p');
-                mkPara.innerHTML = activity;
-                myContent.innerHTML = '';
-                myContent.append(mkPara);
-            };
-
-            function showError() {
-                console.log("There was an error.. somewhere (in ajax request)");
-            };
-
-            function onSuccess(actives) {
-                console.log("Yay a success youre not a complete failure " + actives);
-                newContent(actives["activity"]);
-            };
-
-            function loadBored() {
-                $.ajax({
-                    url: "https://www.boredapi.com/api/activity/",
-                    type: "GET",
-                    dataType: "json",
-                    error: showError,
-                    success: onSuccess
-                });
-            };
-
-            //$(document).ready(loadBored);
-
-        </script>
+        <!-- my javascript-->
+        <script src="index.js"></script>
+        
     </body>
 </html>
