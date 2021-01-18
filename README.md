@@ -1,2 +1,2 @@
-# bored
-CSIS 304 Final Project
+# Webpage hosting past and current projects
+(originally csis304 final lab)
